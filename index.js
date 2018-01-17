@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 const URL = require('url');
 const urlRegex = require('url-regex');
 const normalizeUrl = require('normalize-url');
