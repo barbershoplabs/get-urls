@@ -9,12 +9,12 @@ function getUrlsFromQueryParams(url) {
 	// TODO: Use `(new URL(url)).searchParams` when targeting Node.js 8
 	const qs = URL.parse(url, true).query;
 
-	for (const key of Object.keys(qs)) {
+  Object.keys(qs).forEach((key, i) => {
 		const value = qs[key];
 		if (urlRegex({exact: true}).test(value)) {
 			ret.add(value);
 		}
-	}
+	})
 
 	return ret;
 }
@@ -29,7 +29,7 @@ module.exports = (text, options) => {
 	};
 
 	const urls = text.match(urlRegex()) || [];
-	for (const url of urls) {
+  urls.forEach(function (url) {
 		add(url);
 
 		if (options.extractFromQueryString) {
@@ -37,7 +37,7 @@ module.exports = (text, options) => {
 				add(qsUrl);
 			}
 		}
-	}
+	})
 
 	return ret;
 };
